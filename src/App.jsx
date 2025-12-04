@@ -1,31 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
 
-const App = () => {
-  const counter = useSelector((state) => state);
+const App=()=>{
+   const counter = useSelector((store) => store.counter);
+const theme = useSelector((store) => store.theme);
 
-  const dispatch = useDispatch();
+    const dispatch=useDispatch()
+    return(
+        <>
+        <h1>your value is:{counter}</h1>
+        <button onClick={()=>dispatch({type:"counter/increase",payload:1})}>increase +1</button>
+        <button onClick={()=>dispatch({type:"counter/decrease",payload:1})}>decrease -1</button>
+        <div className="all-colors">
+            <button onClick={()=>dispatch({type:"CHANGE_BD",payload:'orange'})}>Change orange color</button>
+            <div style={{ backgroundColor: theme.bgColor}}>
+    <h2>Current Theme: {theme.bgColor}</h2>
+</div>
 
-  return (
-    <div>
-      <h2>Your value is {counter}</h2>
-
-      <button
-        onClick={() =>
-          dispatch({ type: "counter/increase", payload: 1 })
-        }
-      >
-        Increase +1
-      </button>
-
-      <button
-        onClick={() =>
-          dispatch({ type: "counter/decrease", payload: 1 })
-        }
-      >
-        Decrease -1
-      </button>
-    </div>
-  );
-};
-
-export default App;
+        </div>
+        </>
+    )
+}
+export default App
