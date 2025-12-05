@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase } from "./store/action-creator/counter";
 
 const App = () => {
   const counter = useSelector((state) => state.counter);
@@ -10,12 +11,12 @@ const App = () => {
         <div className="counter-app">
           <h2>you value is {counter}</h2>
           <button
-            onClick={() => dispatch({ type: "counter/increase", payload: 1 })}
+            onClick={() => dispatch(increase(1))}
           >
             increase +1
           </button>
           <button
-            onClick={() => dispatch({ type: "counter/decrease", payload: 1 })}
+            onClick={() => dispatch(decrease(1))}
           >
             decrease -1
           </button>
