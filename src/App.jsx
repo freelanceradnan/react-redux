@@ -1,23 +1,35 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 
-const App=()=>{
-   const counter = useSelector((store) => store.counter);
-const theme = useSelector((store) => store.theme);
-
-    const dispatch=useDispatch()
-    return(
-        <>
-        <h1>your value is:{counter}</h1>
-        <button onClick={()=>dispatch({type:"counter/increase",payload:1})}>increase +1</button>
-        <button onClick={()=>dispatch({type:"counter/decrease",payload:1})}>decrease -1</button>
-        <div className="all-colors">
-            <button onClick={()=>dispatch({type:"CHANGE_BD",payload:'orange'})}>Change orange color</button>
-            <div style={{ backgroundColor: theme.bgColor}}>
-    <h2>Current Theme: {theme.bgColor}</h2>
-</div>
-
+const App = () => {
+  const counter = useSelector((state) => state.counter);
+  const theme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+  return (
+    <>
+      <div className="total-section" style={{backgroundColor:theme.bgColor,color:theme.textColor}}>
+        <div className="counter-app">
+          <h2>you value is {counter}</h2>
+          <button
+            onClick={() => dispatch({ type: "counter/increase", payload: 1 })}
+          >
+            increase +1
+          </button>
+          <button
+            onClick={() => dispatch({ type: "counter/decrease", payload: 1 })}
+          >
+            decrease -1
+          </button>
         </div>
-        </>
-    )
-}
-export default App
+        <hr/>
+        <div className="coustomized-app">
+            <button onClick={()=>dispatch({type:"theme/CHANGE_BG",payload:"blue"})}>change red color</button>
+           <button onClick={()=>dispatch({type:"theme/CHANGE_BG",payload:"yellow"})}>change yellow color</button>
+           <hr/>
+           <button onClick={()=>dispatch({type:"theme/reset"})}>RESET</button>
+           <button onClick={()=>dispatch({type:"theme/CHANGE_TEXT",payload:"pink"})}>change text</button>
+        </div>
+      </div>
+    </>
+  );
+};
+export default App;
